@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bulk File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-form {
+            text-align: center;
+        }
+
+        .upload-input {
+            display: none;
+        }
+
+        .upload-label {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #2196f3;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-label:hover {
+            background-color: #0f7ae5;
+        }
+
+        .upload-input:focus + .upload-label {
+            outline: 2px solid #0f7ae5;
+        }
+
+        .upload-submit {
+            display: block;
+            margin-top: 20px;
+            padding: 12px 40px;
+            background-color: #4caf50;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-submit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk File Upload</h1>
+        <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+            <input class="upload-input" id="files" type="file" name="files" multiple>
+            <label class="upload-label" for="files">Choose Files</label>
+            <span id="file-count"></span>
+            <br><br>
+            <input class="upload-submit" type="submit" value="Upload">
+        </form>
+    </div>
+
+    <script>
+        const uploadInput = document.getElementById('files');
+        const fileCountLabel = document.getElementById('file-count');
+
+        uploadInput.addEventListener('change', () => {
+            const fileCount = uploadInput.files.length;
+            fileCountLabel.textContent = `Selected files: ${fileCount}`;
+        });
+    </script>
+</body>
+</html>
+
